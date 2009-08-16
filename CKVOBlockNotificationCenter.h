@@ -1,5 +1,5 @@
 //
-//  CKVONotificationCenter.h
+//  CKVOBlockNotificationCenter.h
 //  MOO
 //
 //  Created by Jonathan Wight on 6/20/09.

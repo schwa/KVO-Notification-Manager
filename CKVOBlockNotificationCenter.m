@@ -173,8 +173,11 @@ for (id theObject in self.helpersForObjects)
 - (void)applicationWillTerminate:(NSNotification *)inNotification
 {
 NSLog(@"APPLICATION WILL TERMINATE");
-[gInstance autorelease];
-gInstance = NULL;
+if (gInstance)
+	{
+	[gInstance autorelease];
+	gInstance = NULL;
+	}
 }
 
 @end

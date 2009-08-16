@@ -48,9 +48,12 @@ static CKVOBlockNotificationCenter *gInstance = NULL;
 
 + (CKVOBlockNotificationCenter *)instance
 {
-if (gInstance == NULL)
+@synchronized(self)
 	{
-	gInstance = [[self alloc] init];
+	if (gInstance == NULL)
+		{
+		gInstance = [[self alloc] init];
+		}
 	}
 return(gInstance);
 }

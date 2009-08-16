@@ -31,6 +31,7 @@
 
 typedef void (^KVOBlock)(NSString *keyPath, id object, NSDictionary *change, id identifier);
 
+/// You do not have to use CKVOBlockNotificationCenter. Use the NSObject category instead.
 @interface CKVOBlockNotificationCenter : NSObject {
 	NSMapTable *helpersForObjects;
 }
@@ -45,8 +46,9 @@ typedef void (^KVOBlock)(NSString *keyPath, id object, NSDictionary *change, id 
 
 @end
 
-#pragma -
+#pragma mark -
 
+/// KVOBlock extensions to NSObject allow any object to easily register (add) and unregister (remove) block based notifications.
 @interface NSObject (NSObject_KVOBlockNotificationCenterExtensions)
 
 - (void)addKVOBlock:(KVOBlock)inBlock forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options identifier:(NSString *)inIdentifier;

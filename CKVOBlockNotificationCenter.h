@@ -52,7 +52,9 @@ typedef void (^KVOBlock)(NSString *keyPath, id object, NSDictionary *change, id 
 @interface NSObject (NSObject_KVOBlockNotificationCenterExtensions)
 
 - (void)addKVOBlock:(KVOBlock)inBlock forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options identifier:(NSString *)inIdentifier;
+
 - (void)removeKVOBlockForKeyPath:(NSString *)keyPath identifier:(NSString *)inIdentifier;
+
 - (void)removeAllKVOBlocksForKeyPath:(NSString *)keyPath;
 
 @end

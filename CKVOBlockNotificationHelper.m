@@ -45,8 +45,8 @@
 {
 if ((self = [super init]) != NULL)
 	{
-	self.target = inTarget;
-	self.keyPath = inKeyPath;
+	target = inTarget;
+	keyPath = [inKeyPath copy];
 	block = [inBlock copy];
 	identifier = [inIdentifier copy];
 	}
@@ -55,8 +55,9 @@ return(self);
 
 - (void)dealloc
 {
-self.target = NULL;
-self.keyPath = NULL;
+target = NULL;
+[keyPath release];
+keyPath = NULL;
 [block release];
 block = NULL;
 

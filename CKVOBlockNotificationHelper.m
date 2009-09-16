@@ -43,6 +43,10 @@
 
 - (id)initWithTarget:(id)inTarget keyPath:(NSString *)inKeyPath block:(KVOBlock)inBlock identifier:(NSString *)inIdentifier;
 {
+NSAssert(inTarget != NULL, @"No target");
+NSAssert(inKeyPath != NULL, @"No key path");
+NSAssert(inBlock != NULL, @"No block");
+
 if ((self = [super init]) != NULL)
 	{
 	target = inTarget;

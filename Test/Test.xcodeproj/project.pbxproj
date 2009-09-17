@@ -35,7 +35,7 @@
 		4577CD5010614EE9006432BE /* CKVOBlockNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKVOBlockNotificationCenter.m; path = ../CKVOBlockNotificationCenter.m; sourceTree = SOURCE_ROOT; };
 		4577CD5110614EE9006432BE /* CKVOBlockNotificationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKVOBlockNotificationHelper.h; path = ../CKVOBlockNotificationHelper.h; sourceTree = SOURCE_ROOT; };
 		4577CD5210614EE9006432BE /* CKVOBlockNotificationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKVOBlockNotificationHelper.m; path = ../CKVOBlockNotificationHelper.m; sourceTree = SOURCE_ROOT; };
-		4577CD6B106150E5006432BE /* Unit Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Unit Tests.octest"; path = "/Volumes/Users/schwa/Development/Products/Debug/Unit Tests.octest"; sourceTree = "<absolute>"; };
+		4577CD6B106150E5006432BE /* Unit Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4577CD6C106150E5006432BE /* Unit Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Unit Tests-Info.plist"; sourceTree = "<group>"; };
 		4577CD7B10615110006432BE /* UnitTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitTests.h; sourceTree = "<group>"; };
 		4577CD7C10615110006432BE /* UnitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitTests.m; sourceTree = "<group>"; };

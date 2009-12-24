@@ -31,178 +31,93 @@
 #import "CKVOBlockNotificationCenter.h"
 
 #import "CKVOBlockNotificationHelper.h"
-
-static CKVOBlockNotificationCenter *gInstance = NULL;
-
-@interface CKVOBlockNotificationCenter ()
-@property (readwrite, retain) NSMapTable *helpersForObjects;
-
-- (id)keyForTarget:(id)inTarget keyPath:(NSString *)inKeyPath identifier:(NSString *)inIdentifier;
-@end
+#include <objc/runtime.h>
 
 #pragma mark -
 
-@implementation CKVOBlockNotificationCenter
-
-@synthesize helpersForObjects;
-
-+ (CKVOBlockNotificationCenter *)instance
-{
-@synchronized(self)
-	{
-	if (gInstance == NULL)
-		{
-		gInstance = [[self alloc] init];
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminate:) name:NSApplicationWillTerminateNotification object:[NSApplication sharedApplication]];
-		}
-	}
-return(gInstance);
-}
-
-- (id)init
-{
-if ((self = [super init]) != NULL)
-	{
-	helpersForObjects = [[NSMapTable mapTableWithKeyOptions:NSPointerFunctionsZeroingWeakMemory valueOptions:NSPointerFunctionsStrongMemory] retain];
-	}
-return(self);
-}
-
-- (void)dealloc
-{
-[helpersForObjects autorelease];
-helpersForObjects = NULL;
-
-if (gInstance == self)
-	gInstance = NULL;
+//- (void)removeKVOBlockForKeyPath:(NSString *)inKeyPath target:(id)inTarget identifier:(NSString *)inIdentifier
+//{
+//NSAssert(inKeyPath != NULL, @"No key path");
+//NSAssert(inTarget != NULL, @"No target");
 //
-[super dealloc];
-}
-
-#pragma mark -
-
-- (void)addKVOBlock:(KVOBlock)inBlock forKeyPath:(NSString *)inKeyPath target:(id)inTarget options:(NSKeyValueObservingOptions)inOptions identifier:(NSString *)inIdentifier
-{
-NSAssert(inBlock != NULL, @"No block");
-NSAssert(inKeyPath != NULL, @"No key path");
-NSAssert(inTarget != NULL, @"No target");
-
-id theKey = [self keyForTarget:inTarget keyPath:inKeyPath identifier:inIdentifier];
-
-NSMapTable *theHelpers = [self.helpersForObjects objectForKey:inTarget];
-if (theHelpers == NULL)
-	{
-	theHelpers = [NSMapTable mapTableWithStrongToStrongObjects];
-	[self.helpersForObjects setObject:theHelpers forKey:inTarget];
-	}
-
-CKVOBlockNotificationHelper *theHelper = [theHelpers objectForKey:theKey];
-if (theHelper != NULL)
-	{
-	[inTarget removeObserver:theHelper forKeyPath:inKeyPath];
-	//
-	[theHelpers removeObjectForKey:theKey];
-	}
-
-theHelper = [[[CKVOBlockNotificationHelper alloc] initWithTarget:inTarget keyPath:inKeyPath block:inBlock identifier:inIdentifier] autorelease];
-
-[theHelpers setObject:theHelper forKey:theKey];
+//id theKey = [self keyForTarget:inTarget keyPath:inKeyPath identifier:inIdentifier];
+//NSMapTable *theHelpers = [self.helpersForObjects objectForKey:inTarget];
+//CKVOBlockNotificationHelper *theHelper = [theHelpers objectForKey:theKey];
+//if (theHelper)
+//	{
+//	[inTarget removeObserver:theHelper forKeyPath:inKeyPath];
+//	//
+//	[theHelpers removeObjectForKey:theKey];
+//	
+//	if (theHelpers.count == 0)
+//		[self.helpersForObjects removeObjectForKey:inTarget];
+//	}
+//}
 //
-[inTarget addObserver:theHelper forKeyPath:inKeyPath options:inOptions context:self];
-}
-
-- (void)removeKVOBlockForKeyPath:(NSString *)inKeyPath target:(id)inTarget identifier:(NSString *)inIdentifier
+//- (void)removeAllKVOBlocksForKeyPath:(NSString *)inKeyPath target:(id)inTarget;
+//{
+//NSAssert(inKeyPath != NULL, @"No key path");
+//NSAssert(inTarget != NULL, @"No target");
+//
+//for (CKVOBlockNotificationHelper *theHelper in self.helpersForObjects)
+//	{
+//	if ([theHelper.keyPath isEqualToString:inKeyPath] && theHelper.target == inTarget)
+//		{
+//		[self removeKVOBlockForKeyPath:inKeyPath target:inTarget identifier:theHelper.identifier];
+//		}
+//	}
+//}
+//
+//#pragma mark -
+//
+static id KeyForTarget(id inObserver, id inTarget, NSString *inKeyPath, NSString *inIdentifier)
 {
-NSAssert(inKeyPath != NULL, @"No key path");
-NSAssert(inTarget != NULL, @"No target");
+NSCAssert(inKeyPath != NULL, @"No key path");
+NSCAssert(inTarget != NULL, @"No target");
 
-id theKey = [self keyForTarget:inTarget keyPath:inKeyPath identifier:inIdentifier];
-NSMapTable *theHelpers = [self.helpersForObjects objectForKey:inTarget];
-CKVOBlockNotificationHelper *theHelper = [theHelpers objectForKey:theKey];
-if (theHelper)
-	{
-	[inTarget removeObserver:theHelper forKeyPath:inKeyPath];
-	//
-	[theHelpers removeObjectForKey:theKey];
-	
-	if (theHelpers.count == 0)
-		[self.helpersForObjects removeObjectForKey:inTarget];
-	}
+return([NSString stringWithFormat:@"%x:%x:%@:%@", inObserver, inTarget, inKeyPath, inIdentifier]);
 }
-
-- (void)removeAllKVOBlocksForKeyPath:(NSString *)inKeyPath target:(id)inTarget;
-{
-NSAssert(inKeyPath != NULL, @"No key path");
-NSAssert(inTarget != NULL, @"No target");
-
-for (CKVOBlockNotificationHelper *theHelper in self.helpersForObjects)
-	{
-	if ([theHelper.keyPath isEqualToString:inKeyPath] && theHelper.target == inTarget)
-		{
-		[self removeKVOBlockForKeyPath:inKeyPath target:inTarget identifier:theHelper.identifier];
-		}
-	}
-}
-
-#pragma mark -
-
-- (id)keyForTarget:(id)inTarget keyPath:(NSString *)inKeyPath identifier:(NSString *)inIdentifier;
-{
-NSAssert(inKeyPath != NULL, @"No key path");
-NSAssert(inTarget != NULL, @"No target");
-
-return([NSString stringWithFormat:@"%x:%@:%@", inTarget, inKeyPath, inIdentifier]);
-}
-
-- (void)dump
-{
-for (id theObject in self.helpersForObjects)
-	{
-	printf("%s\n", [[theObject description] UTF8String]);
-	for (NSString *theKey in [self.helpersForObjects objectForKey:theObject])
-		{
-		printf("\t%s\n", [[theKey description] UTF8String]);
-		}
-	}
-}
-
-@end
 
 #pragma mark -
 
 @implementation NSObject (NSObject_KVOBlockNotificationCenterExtensions)
 
-- (void)addKVOBlock:(KVOBlock)inBlock forKeyPath:(NSString *)inKeyPath options:(NSKeyValueObservingOptions)inOptions identifier:(NSString *)inIdentifier
+- (void)addObserver:(NSObject *)observer handler:(KVOBlock)inHandler forKeyPath:(NSString *)inKeyPath options:(NSKeyValueObservingOptions)inOptions identifier:(id)inIdentifier
 {
-NSAssert(inBlock != NULL, @"No block");
+NSAssert(inHandler != NULL, @"No block");
 NSAssert(inKeyPath != NULL, @"No key path");
 
-[[CKVOBlockNotificationCenter instance] addKVOBlock:inBlock forKeyPath:inKeyPath target:self options:inOptions identifier:inIdentifier];
-}
+static NSString *theHelpersKey = @"NSObject_KVOBlockNotificationCenterExtensions_Helpers";
 
-- (void)removeKVOBlockForKeyPath:(NSString *)inKeyPath identifier:(NSString *)inIdentifier
-{
-NSAssert(inKeyPath != NULL, @"No key path");
-
-[[CKVOBlockNotificationCenter instance] removeKVOBlockForKeyPath:inKeyPath target:self identifier:inIdentifier];
-}
-
-- (void)removeAllKVOBlocksForKeyPath:(NSString *)inKeyPath;
-{
-NSAssert(inKeyPath != NULL, @"No key path");
-
-[[CKVOBlockNotificationCenter instance] removeAllKVOBlocksForKeyPath:inKeyPath target:self];
-}
-
-#pragma mark -
-
-+ (void)applicationWillTerminate:(NSNotification *)inNotification
-{
-if (gInstance)
+NSMapTable *theHelpers = objc_getAssociatedObject(observer, theHelpersKey);
+if (theHelpers == NULL)
 	{
-	[gInstance autorelease];
-	gInstance = NULL;
+	theHelpers = [NSMapTable mapTableWithStrongToStrongObjects];
+	objc_setAssociatedObject(observer, theHelpersKey, theHelpers, OBJC_ASSOCIATION_RETAIN);
 	}
+
+id theKey = KeyForTarget(observer, self, inKeyPath, inIdentifier);
+
+CKVOBlockNotificationHelper *theHelper = [theHelpers objectForKey:theKey];
+if (theHelper != NULL)
+	{
+	[self removeObserver:theHelper forKeyPath:inKeyPath];
+	//
+	[theHelpers removeObjectForKey:theKey];
+	}
+
+theHelper = [[[CKVOBlockNotificationHelper alloc] initWithTarget:self keyPath:inKeyPath block:inHandler identifier:inIdentifier] autorelease];
+
+[theHelpers setObject:theHelper forKey:theKey];
+//
+[self addObserver:theHelper forKeyPath:inKeyPath options:inOptions context:self];
+}
+
+- (void)removeObserver:(NSObject *)observer handler:(KVOBlock)inHandler forKeyPath:(NSString *)keyPath
+{
+//NSAssert(inKeyPath != NULL, @"No key path");
+//
+//[[CKVOBlockNotificationCenter instance] removeKVOBlockForKeyPath:inKeyPath target:self identifier:inIdentifier];
 }
 
 @end

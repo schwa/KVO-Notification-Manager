@@ -115,6 +115,7 @@ theHelper = [[[CKVOBlockNotificationHelper alloc] initWithTarget:self keyPath:in
 
 - (void)removeObserver:(NSObject *)observer handler:(KVOBlock)inHandler forKeyPath:(NSString *)keyPath
 {
+// TODO
 //NSAssert(inKeyPath != NULL, @"No key path");
 //
 //[[CKVOBlockNotificationCenter instance] removeKVOBlockForKeyPath:inKeyPath target:self identifier:inIdentifier];

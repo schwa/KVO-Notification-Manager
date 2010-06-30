@@ -35,41 +35,6 @@
 
 #pragma mark -
 
-//- (void)removeKVOBlockForKeyPath:(NSString *)inKeyPath target:(id)inTarget identifier:(NSString *)inIdentifier
-//{
-//NSAssert(inKeyPath != NULL, @"No key path");
-//NSAssert(inTarget != NULL, @"No target");
-//
-//id theKey = [self keyForTarget:inTarget keyPath:inKeyPath identifier:inIdentifier];
-//NSMapTable *theHelpers = [self.helpersForObjects objectForKey:inTarget];
-//CKVOBlockNotificationHelper *theHelper = [theHelpers objectForKey:theKey];
-//if (theHelper)
-//	{
-//	[inTarget removeObserver:theHelper forKeyPath:inKeyPath];
-//	//
-//	[theHelpers removeObjectForKey:theKey];
-//	
-//	if (theHelpers.count == 0)
-//		[self.helpersForObjects removeObjectForKey:inTarget];
-//	}
-//}
-//
-//- (void)removeAllKVOBlocksForKeyPath:(NSString *)inKeyPath target:(id)inTarget;
-//{
-//NSAssert(inKeyPath != NULL, @"No key path");
-//NSAssert(inTarget != NULL, @"No target");
-//
-//for (CKVOBlockNotificationHelper *theHelper in self.helpersForObjects)
-//	{
-//	if ([theHelper.keyPath isEqualToString:inKeyPath] && theHelper.target == inTarget)
-//		{
-//		[self removeKVOBlockForKeyPath:inKeyPath target:inTarget identifier:theHelper.identifier];
-//		}
-//	}
-//}
-//
-//#pragma mark -
-//
 static id KeyForTarget(id inObserver, id inTarget, NSString *inKeyPath, NSString *inIdentifier)
 {
 NSCAssert(inKeyPath != NULL, @"No key path");

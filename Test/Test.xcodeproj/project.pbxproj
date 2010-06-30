@@ -13,7 +13,6 @@
 		4577CD5410614EE9006432BE /* CKVOBlockNotificationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577CD5210614EE9006432BE /* CKVOBlockNotificationHelper.m */; };
 		4577CD70106150ED006432BE /* CKVOBlockNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577CD5010614EE9006432BE /* CKVOBlockNotificationCenter.m */; };
 		4577CD71106150EE006432BE /* CKVOBlockNotificationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577CD5210614EE9006432BE /* CKVOBlockNotificationHelper.m */; };
-		4577CD7D10615110006432BE /* UnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577CD7C10615110006432BE /* UnitTests.m */; };
 		4577CD801061513E006432BE /* UnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577CD7C10615110006432BE /* UnitTests.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -265,7 +264,6 @@
 				256AC3DA0F4B6AC300CF3369 /* TestAppDelegate.m in Sources */,
 				4577CD5310614EE9006432BE /* CKVOBlockNotificationCenter.m in Sources */,
 				4577CD5410614EE9006432BE /* CKVOBlockNotificationHelper.m in Sources */,
-				4577CD7D10615110006432BE /* UnitTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

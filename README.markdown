@@ -1,0 +1,1 @@
+KVOBlockNotificationCenter is a set of source code for using blocks with Cocoa's Key Value Observing (KVO).  Originally inspired by Mike Ash's "KVO Done Right" blog post and code: http://www.mikeash.com/?page=pyblog/key-value-observing-done-right.html   See http://toxicsoftware.com/kvoblocks/ for more information.

@@ -29,9 +29,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import "CKVOBlockNotificationCenter.h"
+#import "NSObject_KVOBlockNotificationExtensions.h"
 
-/// You should not have to use CKVOBlockNotificationHelper. It is an internal helper class used by CKVOBlockNotificationCenter.
+/// You should not have to use CKVOBlockNotificationHelper. It is an internal helper class used by the NSObject_KVOBlockNotificationExtensions category. Use that instead.
 @interface CKVOBlockNotificationHelper : NSObject {
 	__weak id target;
 	NSString *keyPath;

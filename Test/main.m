@@ -6,9 +6,15 @@
 //  Copyright 2009 toxicsoftware.com. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import "CTester.h"
 
 int main(int argc, char *argv[])
 {
-    return NSApplicationMain(argc,  (const char **) argv);
+NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
+
+CTester *theTester = [[[CTester alloc] init] autorelease];
+[theTester test];
+
+[thePool release];
+return(0);
 }

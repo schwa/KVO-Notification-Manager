@@ -7,42 +7,42 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
-		256AC3DA0F4B6AC300CF3369 /* TestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* TestAppDelegate.m */; };
-		4577CD5310614EE9006432BE /* CKVOBlockNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577CD5010614EE9006432BE /* CKVOBlockNotificationCenter.m */; };
-		4577CD5410614EE9006432BE /* CKVOBlockNotificationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577CD5210614EE9006432BE /* CKVOBlockNotificationHelper.m */; };
-		4577CD70106150ED006432BE /* CKVOBlockNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577CD5010614EE9006432BE /* CKVOBlockNotificationCenter.m */; };
+		45393DEA11DC123700A4C942 /* CKVOBlockNotificationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577CD5210614EE9006432BE /* CKVOBlockNotificationHelper.m */; };
+		45393DEB11DC123700A4C942 /* NSObject_KVOBlockNotificationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577CD5010614EE9006432BE /* NSObject_KVOBlockNotificationExtensions.m */; };
+		45393F5111DC125700A4C942 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B97325FDCFA39411CA2CEA /* Foundation.framework */; };
+		45393F5411DC126500A4C942 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		45393F5811DC127600A4C942 /* CTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 45393F5711DC127600A4C942 /* CTester.m */; };
+		45393FA011DC141800A4C942 /* UnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 45393F9E11DC141800A4C942 /* UnitTests.m */; };
+		4577CD70106150ED006432BE /* NSObject_KVOBlockNotificationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577CD5010614EE9006432BE /* NSObject_KVOBlockNotificationExtensions.m */; };
 		4577CD71106150EE006432BE /* CKVOBlockNotificationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577CD5210614EE9006432BE /* CKVOBlockNotificationHelper.m */; };
-		4577CD801061513E006432BE /* UnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577CD7C10615110006432BE /* UnitTests.m */; };
-		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
-		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
-		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
-		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		256AC3D80F4B6AC300CF3369 /* TestAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestAppDelegate.h; sourceTree = "<group>"; };
-		256AC3D90F4B6AC300CF3369 /* TestAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestAppDelegate.m; sourceTree = "<group>"; };
 		256AC3F00F4B6AF500CF3369 /* Test_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test_Prefix.pch; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		4577CD4F10614EE9006432BE /* CKVOBlockNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKVOBlockNotificationCenter.h; path = ../CKVOBlockNotificationCenter.h; sourceTree = SOURCE_ROOT; };
-		4577CD5010614EE9006432BE /* CKVOBlockNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKVOBlockNotificationCenter.m; path = ../CKVOBlockNotificationCenter.m; sourceTree = SOURCE_ROOT; };
+		45393DE611DC122600A4C942 /* KVOTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = KVOTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		45393F5611DC127600A4C942 /* CTester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTester.h; sourceTree = "<group>"; };
+		45393F5711DC127600A4C942 /* CTester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTester.m; sourceTree = "<group>"; };
+		45393F9C11DC141800A4C942 /* Unit Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Unit Tests-Info.plist"; sourceTree = "<group>"; };
+		45393F9D11DC141800A4C942 /* UnitTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitTests.h; sourceTree = "<group>"; };
+		45393F9E11DC141800A4C942 /* UnitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitTests.m; sourceTree = "<group>"; };
+		4577CD4F10614EE9006432BE /* NSObject_KVOBlockNotificationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSObject_KVOBlockNotificationExtensions.h; path = ../NSObject_KVOBlockNotificationExtensions.h; sourceTree = SOURCE_ROOT; };
+		4577CD5010614EE9006432BE /* NSObject_KVOBlockNotificationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSObject_KVOBlockNotificationExtensions.m; path = ../NSObject_KVOBlockNotificationExtensions.m; sourceTree = SOURCE_ROOT; };
 		4577CD5110614EE9006432BE /* CKVOBlockNotificationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKVOBlockNotificationHelper.h; path = ../CKVOBlockNotificationHelper.h; sourceTree = SOURCE_ROOT; };
 		4577CD5210614EE9006432BE /* CKVOBlockNotificationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKVOBlockNotificationHelper.m; path = ../CKVOBlockNotificationHelper.m; sourceTree = SOURCE_ROOT; };
 		4577CD6B106150E5006432BE /* Unit Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4577CD6C106150E5006432BE /* Unit Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Unit Tests-Info.plist"; sourceTree = "<group>"; };
-		4577CD7B10615110006432BE /* UnitTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitTests.h; sourceTree = "<group>"; };
-		4577CD7C10615110006432BE /* UnitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitTests.m; sourceTree = "<group>"; };
-		8D1107310486CEB800E47090 /* Test-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Test-Info.plist"; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		45393DE411DC122600A4C942 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45393F5111DC125700A4C942 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4577CD68106150E5006432BE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -50,49 +50,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8D11072E0486CEB800E47090 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		080E96DDFE201D6D7F000001 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				256AC3D80F4B6AC300CF3369 /* TestAppDelegate.h */,
-				256AC3D90F4B6AC300CF3369 /* TestAppDelegate.m */,
-			);
-			name = Classes;
-			sourceTree = "<group>";
-		};
-		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
-			);
-			name = "Linked Frameworks";
-			sourceTree = "<group>";
-		};
-		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
-				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
-				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
-			sourceTree = "<group>";
-		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D1107320486CEB800E47090 /* Test.app */,
 				4577CD6B106150E5006432BE /* Unit Tests.octest */,
+				45393DE611DC122600A4C942 /* KVOTest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -100,17 +65,14 @@
 		29B97314FDCFA39411CA2CEA /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				4577CD4F10614EE9006432BE /* CKVOBlockNotificationCenter.h */,
-				4577CD5010614EE9006432BE /* CKVOBlockNotificationCenter.m */,
+				4577CD4F10614EE9006432BE /* NSObject_KVOBlockNotificationExtensions.h */,
+				4577CD5010614EE9006432BE /* NSObject_KVOBlockNotificationExtensions.m */,
 				4577CD5110614EE9006432BE /* CKVOBlockNotificationHelper.h */,
 				4577CD5210614EE9006432BE /* CKVOBlockNotificationHelper.m */,
-				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
-				29B97317FDCFA39411CA2CEA /* Resources */,
-				4577CD7A10615104006432BE /* Unit Tests */,
+				45393F9B11DC141800A4C942 /* Unit Tests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				4577CD6C106150E5006432BE /* Unit Tests-Info.plist */,
 			);
 			name = Test;
 			sourceTree = "<group>";
@@ -120,42 +82,49 @@
 			children = (
 				256AC3F00F4B6AF500CF3369 /* Test_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
+				45393F5611DC127600A4C942 /* CTester.h */,
+				45393F5711DC127600A4C942 /* CTester.m */,
 			);
 			name = "Other Sources";
-			sourceTree = "<group>";
-		};
-		29B97317FDCFA39411CA2CEA /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				8D1107310486CEB800E47090 /* Test-Info.plist */,
-				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
-				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
-				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4577CD7A10615104006432BE /* Unit Tests */ = {
+		45393F9B11DC141800A4C942 /* Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
-				4577CD7B10615110006432BE /* UnitTests.h */,
-				4577CD7C10615110006432BE /* UnitTests.m */,
+				45393F9C11DC141800A4C942 /* Unit Tests-Info.plist */,
+				45393F9D11DC141800A4C942 /* UnitTests.h */,
+				45393F9E11DC141800A4C942 /* UnitTests.m */,
 			);
-			name = "Unit Tests";
-			path = "../Unit Tests";
-			sourceTree = SOURCE_ROOT;
+			path = "Unit Tests";
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		45393DE511DC122600A4C942 /* KVOTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 45393DFC11DC123E00A4C942 /* Build configuration list for PBXNativeTarget "KVOTest" */;
+			buildPhases = (
+				45393DE311DC122600A4C942 /* Sources */,
+				45393DE411DC122600A4C942 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KVOTest;
+			productName = KVOTest;
+			productReference = 45393DE611DC122600A4C942 /* KVOTest */;
+			productType = "com.apple.product-type.tool";
+		};
 		4577CD6A106150E5006432BE /* Unit Tests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4577CD6F106150E5006432BE /* Build configuration list for PBXNativeTarget "Unit Tests" */;
@@ -174,24 +143,6 @@
 			productReference = 4577CD6B106150E5006432BE /* Unit Tests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
-		8D1107260486CEB800E47090 /* Test */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Test" */;
-			buildPhases = (
-				8D1107290486CEB800E47090 /* Resources */,
-				8D11072C0486CEB800E47090 /* Sources */,
-				8D11072E0486CEB800E47090 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = Test;
-			productInstallPath = "$(HOME)/Applications";
-			productName = Test;
-			productReference = 8D1107320486CEB800E47090 /* Test.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -204,8 +155,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D1107260486CEB800E47090 /* Test */,
 				4577CD6A106150E5006432BE /* Unit Tests */,
+				45393DE511DC122600A4C942 /* KVOTest */,
 			);
 		};
 /* End PBXProject section */
@@ -215,15 +166,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8D1107290486CEB800E47090 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
-				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,49 +188,76 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		45393DE311DC122600A4C942 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45393DEA11DC123700A4C942 /* CKVOBlockNotificationHelper.m in Sources */,
+				45393DEB11DC123700A4C942 /* NSObject_KVOBlockNotificationExtensions.m in Sources */,
+				45393F5411DC126500A4C942 /* main.m in Sources */,
+				45393F5811DC127600A4C942 /* CTester.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4577CD67106150E5006432BE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4577CD70106150ED006432BE /* CKVOBlockNotificationCenter.m in Sources */,
+				4577CD70106150ED006432BE /* NSObject_KVOBlockNotificationExtensions.m in Sources */,
 				4577CD71106150EE006432BE /* CKVOBlockNotificationHelper.m in Sources */,
-				4577CD801061513E006432BE /* UnitTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8D11072C0486CEB800E47090 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8D11072D0486CEB800E47090 /* main.m in Sources */,
-				256AC3DA0F4B6AC300CF3369 /* TestAppDelegate.m in Sources */,
-				4577CD5310614EE9006432BE /* CKVOBlockNotificationCenter.m in Sources */,
-				4577CD5410614EE9006432BE /* CKVOBlockNotificationHelper.m in Sources */,
+				45393FA011DC141800A4C942 /* UnitTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				089C165DFE840E0CC02AAC07 /* English */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		1DDD58140DA1D0A300B32029 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1DDD58150DA1D0A300B32029 /* English */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
+		45393DE811DC122700A4C942 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = KVOTest;
+			};
+			name = Debug;
+		};
+		45393DE911DC122700A4C942 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = KVOTest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		4577CD6D106150E5006432BE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -302,7 +271,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				INFOPLIST_FILE = "Unit Tests-Info.plist";
+				INFOPLIST_FILE = "Unit Tests/Unit Tests-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -328,7 +297,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				INFOPLIST_FILE = "Unit Tests-Info.plist";
+				INFOPLIST_FILE = "Unit Tests/Unit Tests-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -340,37 +309,6 @@
 				PRODUCT_NAME = "Unit Tests";
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
-		C01FCF4B08A954540054247B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Test_Prefix.pch;
-				INFOPLIST_FILE = "Test-Info.plist";
-				INSTALL_PATH = "$(HOME)/Applications";
-				PRODUCT_NAME = Test;
-			};
-			name = Debug;
-		};
-		C01FCF4C08A954540054247B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Test_Prefix.pch;
-				INFOPLIST_FILE = "Test-Info.plist";
-				INSTALL_PATH = "$(HOME)/Applications";
-				PRODUCT_NAME = Test;
 			};
 			name = Release;
 		};
@@ -403,20 +341,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		45393DFC11DC123E00A4C942 /* Build configuration list for PBXNativeTarget "KVOTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				45393DE811DC122700A4C942 /* Debug */,
+				45393DE911DC122700A4C942 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4577CD6F106150E5006432BE /* Build configuration list for PBXNativeTarget "Unit Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4577CD6D106150E5006432BE /* Debug */,
 				4577CD6E106150E5006432BE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Test" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C01FCF4B08A954540054247B /* Debug */,
-				C01FCF4C08A954540054247B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

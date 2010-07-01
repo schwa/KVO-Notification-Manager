@@ -1,5 +1,5 @@
 //
-//  CKVOBlockNotificationCenter.m
+//  NSObject_KVOBlockNotificationExtensions.m
 //  MOO
 //
 //  Created by Jonathan Wight on 6/20/09.
@@ -28,7 +28,7 @@
 //
 
 
-#import "CKVOBlockNotificationCenter.h"
+#import "NSObject_KVOBlockNotificationExtensions.h"
 
 #import "CKVOBlockNotificationHelper.h"
 #include <objc/runtime.h>
@@ -43,16 +43,16 @@ NSCAssert(inTarget != NULL, @"No target");
 return([NSString stringWithFormat:@"%x:%x:%@:%@", inObserver, inTarget, inKeyPath, inIdentifier]);
 }
 
+static NSString *theHelpersKey = @"NSObject_KVOBlockNotificationExtensions_Helpers";
+
 #pragma mark -
 
-@implementation NSObject (NSObject_KVOBlockNotificationCenterExtensions)
+@implementation NSObject (NSObject_KVOBlockNotificationExtensions)
 
 - (void)addObserver:(NSObject *)observer handler:(KVOBlock)inHandler forKeyPath:(NSString *)inKeyPath options:(NSKeyValueObservingOptions)inOptions identifier:(id)inIdentifier
 {
 NSAssert(inHandler != NULL, @"No block");
 NSAssert(inKeyPath != NULL, @"No key path");
-
-static NSString *theHelpersKey = @"NSObject_KVOBlockNotificationCenterExtensions_Helpers";
 
 NSMapTable *theHelpers = objc_getAssociatedObject(observer, theHelpersKey);
 if (theHelpers == NULL)
@@ -78,12 +78,20 @@ theHelper = [[[CKVOBlockNotificationHelper alloc] initWithTarget:self keyPath:in
 [self addObserver:theHelper forKeyPath:inKeyPath options:inOptions context:self];
 }
 
-- (void)removeObserver:(NSObject *)observer handler:(KVOBlock)inHandler forKeyPath:(NSString *)keyPath
+- (void)removeObserver:(NSObject *)observer forKeyPath:(NSString *)inKeyPath identifier:(id)inIdentifier
 {
-// TODO
-//NSAssert(inKeyPath != NULL, @"No key path");
-//
-//[[CKVOBlockNotificationCenter instance] removeKVOBlockForKeyPath:inKeyPath target:self identifier:inIdentifier];
+id theKey = KeyForTarget(observer, self, inKeyPath, inIdentifier);
+
+NSMapTable *theHelpers = objc_getAssociatedObject(observer, theHelpersKey);
+
+CKVOBlockNotificationHelper *theHelper = [theHelpers objectForKey:theKey];
+
+if (theHelper != NULL)
+	{
+	[self removeObserver:theHelper forKeyPath:inKeyPath];
+	//
+	[theHelpers removeObjectForKey:theKey];
+	}
 }
 
 @end

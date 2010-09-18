@@ -8,7 +8,7 @@
 
 #import "CTester.h"
 
-#import "CKVOBlockNotificationCenter.h"
+#import "NSObject_KVOBlockNotificationExtensions.h"
 
 @implementation CTester
 

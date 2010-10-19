@@ -54,10 +54,10 @@ static NSString *theHelpersKey = @"NSObject_KVOBlockNotificationExtensions_Helpe
 NSAssert(inHandler != NULL, @"No block");
 NSAssert(inKeyPath != NULL, @"No key path");
 
-NSMapTable *theHelpers = objc_getAssociatedObject(observer, theHelpersKey);
+NSMutableDictionary *theHelpers = objc_getAssociatedObject(observer, theHelpersKey);
 if (theHelpers == NULL)
 	{
-	theHelpers = [NSMapTable mapTableWithStrongToStrongObjects];
+	theHelpers = [NSMutableDictionary dictionary];
 	objc_setAssociatedObject(observer, theHelpersKey, theHelpers, OBJC_ASSOCIATION_RETAIN);
 	}
 
@@ -82,7 +82,7 @@ theHelper = [[[CKVOBlockNotificationHelper alloc] initWithTarget:self keyPath:in
 {
 id theKey = KeyForTarget(observer, self, inKeyPath, inIdentifier);
 
-NSMapTable *theHelpers = objc_getAssociatedObject(observer, theHelpersKey);
+NSMutableDictionary *theHelpers = objc_getAssociatedObject(observer, theHelpersKey);
 
 CKVOBlockNotificationHelper *theHelper = [theHelpers objectForKey:theKey];
 

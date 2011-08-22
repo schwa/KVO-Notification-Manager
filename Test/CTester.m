@@ -8,26 +8,53 @@
 
 #import "CTester.h"
 
-#import "NSObject_KVOBlockNotificationExtensions.h"
+#import "NSObject_KVOBlock.h"
+
+@interface CTester ()
+- (void)testIdentifiers;
+- (void)testTokens;
+@end
+
+#pragma mark -
 
 @implementation CTester
 
 @synthesize testValue;
 
 - (void)test
-{
-__block NSString *theValue = NULL;
-KVOBlock theBlock = ^(NSString *keyPath, id object, NSDictionary *change, id identifier) {
-	theValue = [change objectForKey:@"new"];
-	};
+    {
+    [self testIdentifiers];
+    [self testTokens];
+    }
 
-[self addObserver:self handler:theBlock forKeyPath:@"testValue" options:NSKeyValueObservingOptionNew identifier:@"FOO"];
+- (void)testIdentifiers
+    {
+    [self addKVOBlockForKeyPath:@"testValue" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld identifier:@"my_handler" handler:^(NSString *keyPath, id object, NSDictionary *change) {
+        NSLog(@"I see you changed value from \"%@\" to \"%@\"", [change objectForKey:NSKeyValueChangeOldKey], [change objectForKey:NSKeyValueChangeNewKey]);
+        }];
 
-NSLog(@"%@", theValue);
-self.testValue = @"New Value";
-NSLog(@"%@", theValue);
+    self.testValue = @"A horse";
+    self.testValue = @"is a horse";
+    self.testValue = @"of course";
+    self.testValue = @"of course.";
+    self.testValue = NULL;
 
-[self removeObserver:self forKeyPath:@"testValue" identifier:@"FOO"];
-}
+    [self removeKVOBlockForKeyPath:@"testValue" identifier:@"my_handler"];
+    }
+
+- (void)testTokens
+    {
+    id theToken = [self addKVOBlockForKeyPath:@"testValue" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld handler:^(NSString *keyPath, id object, NSDictionary *change) {
+        NSLog(@"I see you changed value from \"%@\" to \"%@\"", [change objectForKey:NSKeyValueChangeOldKey], [change objectForKey:NSKeyValueChangeNewKey]);
+        }];
+
+    self.testValue = @"A horse";
+    self.testValue = @"is a horse";
+    self.testValue = @"of course";
+    self.testValue = @"of course.";
+    self.testValue = NULL;
+
+    [self removeKVOBlockForToken:theToken];
+    }
 
 @end

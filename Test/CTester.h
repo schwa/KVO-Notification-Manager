@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface CTester : NSObject {
-	NSString *testValue;
 }
 
 @property (readwrite, nonatomic, retain) NSString *testValue;

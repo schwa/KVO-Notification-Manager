@@ -48,12 +48,12 @@
 
 static void *KVO;
 
-- (id)addKVOBlockForKeyPath:(NSString *)inKeyPath options:(NSUInteger)inOptions handler:(KVOBlock)inHandler;
+- (id)addKVOBlockForKeyPath:(NSString *)inKeyPath options:(NSKeyValueObservingOptions)inOptions handler:(KVOBlock)inHandler;
     {
     return([self addKVOBlockForKeyPath:inKeyPath options:inOptions identifier:NULL handler:inHandler]);
     }
 
-- (id)addKVOBlockForKeyPath:(NSString *)inKeyPath options:(NSUInteger)inOptions identifier:(NSString *)inIdentifier handler:(KVOBlock)inHandler;
+- (id)addKVOBlockForKeyPath:(NSString *)inKeyPath options:(NSKeyValueObservingOptions)inOptions identifier:(NSString *)inIdentifier handler:(KVOBlock)inHandler;
     {
     NSParameterAssert(inHandler);
     NSParameterAssert(inKeyPath);

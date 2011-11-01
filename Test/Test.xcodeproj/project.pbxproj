@@ -7,30 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		45393DEA11DC123700A4C942 /* CKVOBlockNotificationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577CD5210614EE9006432BE /* CKVOBlockNotificationHelper.m */; };
-		45393DEB11DC123700A4C942 /* NSObject_KVOBlockNotificationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577CD5010614EE9006432BE /* NSObject_KVOBlockNotificationExtensions.m */; };
+		4530DC2A1402C7CE00FCBA6F /* NSObject_KVOBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 4530DC281402C7CE00FCBA6F /* NSObject_KVOBlock.m */; };
+		4530DC2B1402C7CE00FCBA6F /* NSObject_KVOBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 4530DC281402C7CE00FCBA6F /* NSObject_KVOBlock.m */; };
 		45393F5111DC125700A4C942 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B97325FDCFA39411CA2CEA /* Foundation.framework */; };
 		45393F5411DC126500A4C942 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		45393F5811DC127600A4C942 /* CTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 45393F5711DC127600A4C942 /* CTester.m */; };
 		45393FA011DC141800A4C942 /* UnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 45393F9E11DC141800A4C942 /* UnitTests.m */; };
-		4577CD70106150ED006432BE /* NSObject_KVOBlockNotificationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577CD5010614EE9006432BE /* NSObject_KVOBlockNotificationExtensions.m */; };
-		4577CD71106150EE006432BE /* CKVOBlockNotificationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4577CD5210614EE9006432BE /* CKVOBlockNotificationHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		256AC3F00F4B6AF500CF3369 /* Test_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test_Prefix.pch; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		4530DC281402C7CE00FCBA6F /* NSObject_KVOBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSObject_KVOBlock.m; path = ../NSObject_KVOBlock.m; sourceTree = "<group>"; };
+		4530DC291402C7CE00FCBA6F /* NSObject_KVOBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSObject_KVOBlock.h; path = ../NSObject_KVOBlock.h; sourceTree = "<group>"; };
 		45393DE611DC122600A4C942 /* KVOTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = KVOTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		45393F5611DC127600A4C942 /* CTester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTester.h; sourceTree = "<group>"; };
 		45393F5711DC127600A4C942 /* CTester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTester.m; sourceTree = "<group>"; };
 		45393F9C11DC141800A4C942 /* Unit Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Unit Tests-Info.plist"; sourceTree = "<group>"; };
 		45393F9D11DC141800A4C942 /* UnitTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitTests.h; sourceTree = "<group>"; };
 		45393F9E11DC141800A4C942 /* UnitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitTests.m; sourceTree = "<group>"; };
-		4577CD4F10614EE9006432BE /* NSObject_KVOBlockNotificationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSObject_KVOBlockNotificationExtensions.h; path = ../NSObject_KVOBlockNotificationExtensions.h; sourceTree = SOURCE_ROOT; };
-		4577CD5010614EE9006432BE /* NSObject_KVOBlockNotificationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSObject_KVOBlockNotificationExtensions.m; path = ../NSObject_KVOBlockNotificationExtensions.m; sourceTree = SOURCE_ROOT; };
-		4577CD5110614EE9006432BE /* CKVOBlockNotificationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKVOBlockNotificationHelper.h; path = ../CKVOBlockNotificationHelper.h; sourceTree = SOURCE_ROOT; };
-		4577CD5210614EE9006432BE /* CKVOBlockNotificationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKVOBlockNotificationHelper.m; path = ../CKVOBlockNotificationHelper.m; sourceTree = SOURCE_ROOT; };
 		4577CD6B106150E5006432BE /* Unit Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -65,10 +61,8 @@
 		29B97314FDCFA39411CA2CEA /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				4577CD4F10614EE9006432BE /* NSObject_KVOBlockNotificationExtensions.h */,
-				4577CD5010614EE9006432BE /* NSObject_KVOBlockNotificationExtensions.m */,
-				4577CD5110614EE9006432BE /* CKVOBlockNotificationHelper.h */,
-				4577CD5210614EE9006432BE /* CKVOBlockNotificationHelper.m */,
+				4530DC291402C7CE00FCBA6F /* NSObject_KVOBlock.h */,
+				4530DC281402C7CE00FCBA6F /* NSObject_KVOBlock.m */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				45393F9B11DC141800A4C942 /* Unit Tests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -150,7 +144,11 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Test" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Test */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -192,10 +190,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45393DEA11DC123700A4C942 /* CKVOBlockNotificationHelper.m in Sources */,
-				45393DEB11DC123700A4C942 /* NSObject_KVOBlockNotificationExtensions.m in Sources */,
 				45393F5411DC126500A4C942 /* main.m in Sources */,
 				45393F5811DC127600A4C942 /* CTester.m in Sources */,
+				4530DC2B1402C7CE00FCBA6F /* NSObject_KVOBlock.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,9 +200,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4577CD70106150ED006432BE /* NSObject_KVOBlockNotificationExtensions.m in Sources */,
-				4577CD71106150EE006432BE /* CKVOBlockNotificationHelper.m in Sources */,
 				45393FA011DC141800A4C942 /* UnitTests.m in Sources */,
+				4530DC2A1402C7CE00FCBA6F /* NSObject_KVOBlock.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +212,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -223,6 +220,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INSTALL_PATH = /usr/local/bin;
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -232,6 +230,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = KVOTest;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -239,12 +238,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INSTALL_PATH = /usr/local/bin;
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -254,6 +255,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = KVOTest;
+				SDKROOT = macosx;
 				ZERO_LINK = NO;
 			};
 			name = Release;

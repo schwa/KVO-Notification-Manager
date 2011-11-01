@@ -32,12 +32,12 @@
 #import "CTester.h"
 
 int main(int argc, char *argv[])
-{
-NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
+    {
+    @autoreleasepool
+        {
+        CTester *theTester = [[CTester alloc] init];
+        [theTester test];
+        }
 
-CTester *theTester = [[[CTester alloc] init] autorelease];
-[theTester test];
-
-[thePool release];
-return(0);
-}
+    return(0);
+    }

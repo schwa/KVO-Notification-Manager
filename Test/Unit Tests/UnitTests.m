@@ -31,26 +31,117 @@
 
 #import "UnitTests.h"
 
-#import "NSObject_KVOBlockNotificationExtensions.h"
+#import "NSObject_KVOBlock.h"
+
+@interface UnitTests ()
+@property (readwrite, nonatomic, retain) NSString *testValue;
+@property (readwrite, nonatomic, retain) id token;
+@end
+
+#pragma mark -
 
 @implementation UnitTests
 
 @synthesize testValue;
+@synthesize token;
 
-- (void)testFoo
-{
-__block NSString *theValue = NULL;
-KVOBlock theBlock = ^(NSString *keyPath, id object, NSDictionary *change, id identifier) {
-	theValue = [change objectForKey:@"new"];
-	};
+- (void)setUp
+    {
+    testValue = NULL;
+    token = NULL;
+    }
+    
+- (void)tearDown
+    {
+    testValue = NULL;
+    token = NULL;
+    }
 
-[self addObserver:self handler:theBlock forKeyPath:@"testValue" options:NSKeyValueObservingOptionNew identifier:@"FOO"];
+- (void)testIdentifiers
+    {
+    __block NSString *theOldValue = @"";
+    __block NSString *theNewValue = @"";
 
-self.testValue = @"New Value";
+    self.testValue = @"1";
+    STAssertEqualObjects(theOldValue, @"", @"Failed.");
+    STAssertEqualObjects(theNewValue, @"", @"Failed.");
+    
+    [self addKVOBlockForKeyPath:@"testValue" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld identifier:@"my_handler" handler:^(NSString *keyPath, id object, NSDictionary *change) {
+        theOldValue = [change objectForKey:NSKeyValueChangeOldKey];
+        theNewValue = [change objectForKey:NSKeyValueChangeNewKey];
+        }];
 
-STAssertEqualObjects(theValue, self.testValue, @"Value not expected (is %@)", theValue);
+    self.testValue = @"2";
+    STAssertEqualObjects(theOldValue, @"1", @"Failed.");
+    STAssertEqualObjects(theNewValue, @"2", @"Failed.");
 
-[self removeObserver:self forKeyPath:@"testValue" identifier:@"FOO"];
-}
+    self.testValue = @"3";
+    STAssertEqualObjects(theOldValue, @"2", @"Failed.");
+    STAssertEqualObjects(theNewValue, @"3", @"Failed.");
+
+    theOldValue = @"";
+    theNewValue = @"";
+    
+    [self removeKVOBlockForKeyPath:@"testValue" identifier:@"my_handler"];
+    
+    self.testValue = @"4";
+    STAssertEqualObjects(theOldValue, @"", @"Failed.");
+    STAssertEqualObjects(theNewValue, @"", @"Failed.");
+    }
+
+- (void)testTokens
+    {
+    __block NSString *theOldValue = @"";
+    __block NSString *theNewValue = @"";
+
+    self.testValue = @"1";
+    STAssertEqualObjects(theOldValue, @"", @"Failed.");
+    STAssertEqualObjects(theNewValue, @"", @"Failed.");
+    
+    NSString *theToken = [self addKVOBlockForKeyPath:@"testValue" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld handler:^(NSString *keyPath, id object, NSDictionary *change) {
+        theOldValue = [change objectForKey:NSKeyValueChangeOldKey];
+        theNewValue = [change objectForKey:NSKeyValueChangeNewKey];
+        }];
+
+    self.testValue = @"2";
+    STAssertEqualObjects(theOldValue, @"1", @"Failed.");
+    STAssertEqualObjects(theNewValue, @"2", @"Failed.");
+
+    self.testValue = @"3";
+    STAssertEqualObjects(theOldValue, @"2", @"Failed.");
+    STAssertEqualObjects(theNewValue, @"3", @"Failed.");
+
+    theOldValue = @"";
+    theNewValue = @"";
+    
+    [self removeKVOBlockForToken:theToken];
+    
+    self.testValue = @"4";
+    STAssertEqualObjects(theOldValue, @"", @"Failed.");
+    STAssertEqualObjects(theNewValue, @"", @"Failed.");
+    }
+
+- (void)testOneShot
+    {
+    __block NSString *theOldValue = @"";
+    __block NSString *theNewValue = @"";
+
+    self.testValue = @"1";
+    STAssertEqualObjects(theOldValue, @"", @"Failed.");
+    STAssertEqualObjects(theNewValue, @"", @"Failed.");
+    
+    [self addOneShotKVOBlockForKeyPath:@"testValue" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld handler:^(NSString *keyPath, id object, NSDictionary *change) {
+        theOldValue = [change objectForKey:NSKeyValueChangeOldKey];
+        theNewValue = [change objectForKey:NSKeyValueChangeNewKey];
+        }];
+
+    self.testValue = @"2";
+    STAssertEqualObjects(theOldValue, @"1", @"Failed.");
+    STAssertEqualObjects(theNewValue, @"2", @"Failed.");
+
+    self.testValue = @"3";
+    STAssertEqualObjects(theOldValue, @"1", @"Failed.");
+    STAssertEqualObjects(theNewValue, @"2", @"Failed.");
+    }
 
 @end

@@ -31,10 +31,6 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-@interface UnitTests : SenTestCase {
-	NSString *testValue;
-}
-
-@property (readwrite, copy) NSString *testValue;
+@interface UnitTests : SenTestCase
 
 @end

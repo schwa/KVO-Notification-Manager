@@ -36,6 +36,7 @@
 @interface CTester ()
 - (void)testIdentifiers;
 - (void)testTokens;
+- (void)testOneShot;
 @end
 
 #pragma mark -
@@ -48,10 +49,13 @@
     {
     [self testIdentifiers];
     [self testTokens];
+    [self testOneShot];
     }
 
 - (void)testIdentifiers
     {
+    NSLog(@"##### IDENTIFIERS #####");
+
     [self addKVOBlockForKeyPath:@"testValue" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld identifier:@"my_handler" handler:^(NSString *keyPath, id object, NSDictionary *change) {
         NSLog(@"I see you changed value from \"%@\" to \"%@\"", [change objectForKey:NSKeyValueChangeOldKey], [change objectForKey:NSKeyValueChangeNewKey]);
         }];
@@ -67,7 +71,26 @@
 
 - (void)testTokens
     {
+    NSLog(@"##### TOKENS #####");
+
     id theToken = [self addKVOBlockForKeyPath:@"testValue" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld handler:^(NSString *keyPath, id object, NSDictionary *change) {
+        NSLog(@"I see you changed value from \"%@\" to \"%@\"", [change objectForKey:NSKeyValueChangeOldKey], [change objectForKey:NSKeyValueChangeNewKey]);
+        }];
+
+    self.testValue = @"A horse";
+    self.testValue = @"is a horse";
+    self.testValue = @"of course";
+    self.testValue = @"of course.";
+    self.testValue = NULL;
+
+    [self removeKVOBlockForToken:theToken];
+    }
+
+- (void)testOneShot
+    {
+    NSLog(@"##### ONE SHOT #####");
+    
+    id theToken = [self addOneShotKVOBlockForKeyPath:@"testValue" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld handler:^(NSString *keyPath, id object, NSDictionary *change) {
         NSLog(@"I see you changed value from \"%@\" to \"%@\"", [change objectForKey:NSKeyValueChangeOldKey], [change objectForKey:NSKeyValueChangeNewKey]);
         }];
 

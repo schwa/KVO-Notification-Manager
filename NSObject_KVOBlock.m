@@ -114,11 +114,8 @@ static void *KVO;
 
     if (theHelper == NULL)
         {
-        NSLog(@"KVOBlock never registered?");
         return;
         }
-
-    NSAssert(theHelper != NULL, @"KVOBlock never registered");
 
     void *theContext = (__bridge void *)[theHelper canonicalKeyForKey:inToken];
     NSString *theKeyPath = [theHelper keypathForKey:inToken];

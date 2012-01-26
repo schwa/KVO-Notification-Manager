@@ -170,7 +170,7 @@ static void *KVO;
     CKVOBlockHelper *theHelper = objc_getAssociatedObject(inObject, &KVO);
     if (theHelper == NULL && inCreate == YES)
         {
-        theHelper = [[CKVOBlockHelper alloc] initWithObject:self];
+        theHelper = [[CKVOBlockHelper alloc] initWithObject:inObject];
 
         objc_setAssociatedObject(inObject, &KVO, theHelper, OBJC_ASSOCIATION_RETAIN);
         }

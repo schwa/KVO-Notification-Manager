@@ -34,21 +34,20 @@
 #import "NSObject_KVOBlock.h"
 
 @interface CTester ()
-- (void)testIdentifiers;
-- (void)testTokens;
-- (void)testOneShot;
 @end
 
 #pragma mark -
 
 @implementation CTester
 
-@synthesize testValue;
-
 - (void)test
     {
     [self testTokens];
     [self testOneShot];
+    [self testMultipleObservers];
+    [self testDealloc];
+
+    [self performSelector:@selector(KVODump)];
     }
 
 - (void)testTokens
@@ -72,7 +71,7 @@
     {
     NSLog(@"##### ONE SHOT #####");
     
-    id theToken = [self addOneShotKVOBlockForKeyPath:@"testValue" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld handler:^(NSString *keyPath, id object, NSDictionary *change) {
+    [self addOneShotKVOBlockForKeyPath:@"testValue" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld handler:^(NSString *keyPath, id object, NSDictionary *change) {
         NSLog(@"I see you changed value from \"%@\" to \"%@\"", [change objectForKey:NSKeyValueChangeOldKey], [change objectForKey:NSKeyValueChangeNewKey]);
         }];
 
@@ -81,8 +80,51 @@
     self.testValue = @"of course";
     self.testValue = @"of course.";
     self.testValue = NULL;
-
-    [self removeKVOBlockForToken:theToken];
     }
+
+- (void)testMultipleObservers
+    {
+    NSLog(@"##### TOKENS #####");
+
+    id A = [self addKVOBlockForKeyPath:@"testValue" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld handler:^(NSString *keyPath, id object, NSDictionary *change) {
+        NSLog(@"(A) I see you changed value from \"%@\" to \"%@\"", [change objectForKey:NSKeyValueChangeOldKey], [change objectForKey:NSKeyValueChangeNewKey]);
+        }];
+    id B = [self addKVOBlockForKeyPath:@"testValue" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld handler:^(NSString *keyPath, id object, NSDictionary *change) {
+        NSLog(@"(B) I see you changed value from \"%@\" to \"%@\"", [change objectForKey:NSKeyValueChangeOldKey], [change objectForKey:NSKeyValueChangeNewKey]);
+        }];
+
+    self.testValue = @"A horse";
+    self.testValue = @"is a horse";
+    self.testValue = @"of course";
+    self.testValue = @"of course.";
+    self.testValue = NULL;
+
+    [self removeKVOBlockForToken:A];
+    [self removeKVOBlockForToken:B];
+    }
+
+- (void)testDealloc
+    {
+    NSLog(@"##### DEALLOC #####");
+
+    NSMutableDictionary *theDictionary = [NSMutableDictionary dictionary];
+
+    id theToken = [theDictionary addKVOBlockForKeyPath:@"testValue" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld handler:^(NSString *keyPath, id object, NSDictionary *change) {
+        NSLog(@"I see you changed value from \"%@\" to \"%@\"", [change objectForKey:NSKeyValueChangeOldKey], [change objectForKey:NSKeyValueChangeNewKey]);
+        }];
+
+    theDictionary[@"testValue"] = @"A horse";
+    theDictionary[@"testValue"] = @"is a horse";
+    theDictionary[@"testValue"] = @"of course";
+    theDictionary[@"testValue"] = @"of course.";
+    theDictionary[@"testValue"] = [NSNull null];
+
+    [theDictionary KVODump];
+
+    theDictionary = NULL;
+
+    theToken = NULL;
+    }
+
 
 @end

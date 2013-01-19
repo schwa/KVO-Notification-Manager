@@ -33,14 +33,26 @@
 
 #import <objc/runtime.h>
 
+@class CKVOToken;
+
 @interface CKVOBlockHelper : NSObject
+@property (readonly, nonatomic, weak) id observedObject;
+@property (readonly, nonatomic, strong) NSMutableDictionary *tokensByContext;
+@property (readwrite, nonatomic, assign) NSInteger nextIdentifier;
 - (id)initWithObject:(id)inObject;
-- (id)makeKeyForKeyPath:(NSString *)inKeyPath;
-- (NSString *)keypathForKey:(id)inKey;
-- (id)canonicalKeyForKey:(id)inKey;
-- (void)setHandler:(KVOFullBlock)inHandler forKey:(id)inKey;
-- (void)removeHandlerForKey:(id)inKey;
+- (CKVOToken *)insertNewTokenForKeyPath:(NSString *)inKeyPath block:(KVOFullBlock)inBlock;
+- (void)removeHandlerForKey:(CKVOToken *)inToken;
 - (void)dump;
+@end
+
+#pragma mark -
+
+@interface CKVOToken : NSObject
+@property (readonly, nonatomic, copy) NSString *keypath;
+@property (readonly, nonatomic, assign) NSInteger index;
+@property (readonly, nonatomic, copy) KVOFullBlock block;
+@property (readonly, nonatomic, assign) void *context;
+- (id)initWithKeyPath:(NSString *)inKey index:(NSInteger)inIndex block:(KVOFullBlock)inBlock;
 @end
 
 #pragma mark -
@@ -58,23 +70,27 @@ static void *KVO;
     CKVOBlockHelper *theHelper = [self helper:YES];
 	NSParameterAssert(theHelper != NULL);
 
-    id theKey = [theHelper makeKeyForKeyPath:inKeyPath];
+    CKVOToken *theToken = [theHelper insertNewTokenForKeyPath:inKeyPath block:inHandler];
+	NSParameterAssert(theToken != NULL);
 
-	[theHelper setHandler:inHandler forKey:theKey];
+    void *theContext = theToken.context;
+	NSParameterAssert(theContext != NULL);
 
-    void *theContext = (__bridge void *)theKey;
     [self addObserver:theHelper forKeyPath:inKeyPath options:inOptions context:theContext];
 
-    return(theKey);
+    return(theToken);
     }
     
-- (void)removeKVOBlockForToken:(id)inToken
+- (void)removeKVOBlockForToken:(CKVOToken *)inToken
     {
+    NSParameterAssert([NSThread isMainThread]); // TODO -- remove and grow a pair.
     CKVOBlockHelper *theHelper = [self helper:NO];
     NSParameterAssert(theHelper != NULL);
 	
-    void *theContext = (__bridge void *)[theHelper canonicalKeyForKey:inToken];
-    NSString *theKeyPath = [theHelper keypathForKey:inToken];
+    void *theContext = inToken.context;
+    NSParameterAssert(theContext);
+    NSString *theKeyPath = inToken.keypath;
+    NSParameterAssert(theKeyPath.length > 0);
     [self removeObserver:theHelper forKeyPath:theKeyPath context:theContext];
 
 	[theHelper removeHandlerForKey:inToken];
@@ -84,7 +100,7 @@ static void *KVO;
 
 - (id)addOneShotKVOBlockForKeyPath:(NSString *)inKeyPath options:(NSKeyValueObservingOptions)inOptions handler:(KVOFullBlock)inHandler
     {
-    __block id theToken = NULL;
+    __block CKVOToken *theToken = NULL;
     KVOFullBlock theBlock = ^(NSString *keyPath, id object, NSDictionary *change) {
         inHandler(keyPath, object, change);
         [self removeKVOBlockForToken:theToken];
@@ -118,14 +134,6 @@ static void *KVO;
 
 #pragma mark -
 
-@interface CKVOBlockHelper ()
-@property (readonly, nonatomic, weak) id observedObject;
-@property (readonly, nonatomic, strong) NSMutableDictionary *handlersByKey;
-@property (readwrite, nonatomic, assign) NSInteger nextIdentifier;
-@end
-
-#pragma mark -
-
 @implementation CKVOBlockHelper
 
 - (id)initWithObject:(id)inObject
@@ -139,63 +147,51 @@ static void *KVO;
 
 - (void)dealloc
     {
-    [_handlersByKey enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+    [_tokensByContext enumerateKeysAndObjectsUsingBlock:^(NSNumber *index, CKVOToken *token, BOOL *stop)
         {
-		void *theContext = (__bridge void *)[self canonicalKeyForKey:key];
-        NSString *theKeypath = [self keypathForKey:key];
+		void *theContext = token.context;
+        NSParameterAssert(theContext != NULL);
+        NSString *theKeypath = token.keypath;
+        NSParameterAssert(theKeypath != NULL);
         [_observedObject removeObserver:self forKeyPath:theKeypath context:theContext];
         }];
     }
 
 - (NSString *)debugDescription
     {
-    return([NSString stringWithFormat:@"%@ (%@, %@, %@)", [self description], self.observedObject, self.handlersByKey, [self.observedObject observationInfo]]);
+    return([NSString stringWithFormat:@"%@ (%@, %@, %@)", [self description], self.observedObject, self.tokensByContext, [self.observedObject observationInfo]]);
     }
 
 - (void)dump
 	{
 	printf("*******************************************************\n");
 	printf("%s\n", [[self description] UTF8String]);
-	printf("\tObserved Object: %p\n", self.observedObject);
+	printf("\tObserved Object: %p\n", (__bridge void *)self.observedObject);
 	printf("\tKeys:\n");
-	[_handlersByKey enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-		printf("\t\t%p\n", key);
+	[_tokensByContext enumerateKeysAndObjectsUsingBlock:^(NSNumber *index, CKVOToken *token, BOOL *stop) {
+		printf("\t\t%s\n", [[index description] UTF8String]);
 		}];
 	printf("\tObservationInfo: %s\n", [[(__bridge id)[self.observedObject observationInfo] description] UTF8String]);
 	}
 
-- (void)setHandler:(KVOFullBlock)inHandler forKey:(id)inKey
+- (void)removeHandlerForKey:(CKVOToken *)inToken
 	{
-	if (_handlersByKey == NULL)
+    [_tokensByContext removeObjectForKey:@(inToken.index)];
+	if (_tokensByContext.count == 0)
 		{
-		_handlersByKey = [NSMutableDictionary dictionary];
+         _tokensByContext = NULL;
 		}
-	_handlersByKey[inKey] = inHandler;
 	}
 
-- (id)makeKeyForKeyPath:(NSString *)inKeyPath
+- (CKVOToken *)insertNewTokenForKeyPath:(NSString *)inKeyPath block:(KVOFullBlock)inBlock
     {
-	id inIdentifier = @(self.nextIdentifier++);
-
-    return(@[inKeyPath, inIdentifier]);
-    }
-
-- (NSString *)keypathForKey:(id)inKey
-    {
-    return(inKey[0]);
-    }
-
-- (id)canonicalKeyForKey:(id)inKey
-    {
-	#if 0
-    NSArray *theKeys = [_handlersByKey allKeys];
-    NSUInteger theIndex = [theKeys indexOfObject:inKey];
-    NSAssert(theIndex != NSNotFound, @"KVOBlock never registered");
-    NSArray *theKey = theKeys[theIndex];
-    return(theKey);
-	#else
-	return(inKey);
-	#endif
+    CKVOToken *theToken = [[CKVOToken alloc] initWithKeyPath:inKeyPath index:++self.nextIdentifier block:inBlock];
+    if (_tokensByContext == NULL)
+        {
+        _tokensByContext = [NSMutableDictionary dictionary];
+        }
+    _tokensByContext[@(theToken.index)] = theToken;
+    return(theToken);
     }
 
 #pragma mark -
@@ -204,17 +200,42 @@ static void *KVO;
     {
     NSParameterAssert(context);
 
-    NSArray *theKey = (__bridge NSArray *)context;
+    NSNumber *theKey = @((NSInteger)context);
 
-    KVOFullBlock theBlock = _handlersByKey[theKey];
-    if (theBlock == NULL)
+    CKVOToken *theToken= _tokensByContext[theKey];
+    if (theToken == NULL)
         {
         NSLog(@"Warning: Could not find block for key: %@", theKey);
         }
     else
         {
-        theBlock(keyPath, object, change);
+        theToken.block(keyPath, object, change);
         }
+    }
+
+@end
+
+@implementation CKVOToken
+
+- (id)initWithKeyPath:(NSString *)inKey index:(NSInteger)inIndex block:(KVOFullBlock)inBlock
+    {
+    if ((self = [super init]) != NULL)
+        {
+        _keypath = inKey;
+        _index = inIndex;
+        _block = inBlock;
+        }
+    return self;
+    }
+
+- (NSString *)description
+    {
+    return([NSString stringWithFormat:@"%@ (%@ #%ld)", [super description], self.keypath, (unsigned long)self.index]);
+    }
+
+- (void *)context
+    {
+    return((void *)self.index);
     }
 
 @end

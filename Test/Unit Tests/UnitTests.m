@@ -57,38 +57,6 @@
     token = NULL;
     }
 
-- (void)testIdentifiers
-    {
-    __block NSString *theOldValue = @"";
-    __block NSString *theNewValue = @"";
-
-    self.testValue = @"1";
-    STAssertEqualObjects(theOldValue, @"", @"Failed.");
-    STAssertEqualObjects(theNewValue, @"", @"Failed.");
-    
-    [self addKVOBlockForKeyPath:@"testValue" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld identifier:@"my_handler" handler:^(NSString *keyPath, id object, NSDictionary *change) {
-        theOldValue = [change objectForKey:NSKeyValueChangeOldKey];
-        theNewValue = [change objectForKey:NSKeyValueChangeNewKey];
-        }];
-
-    self.testValue = @"2";
-    STAssertEqualObjects(theOldValue, @"1", @"Failed.");
-    STAssertEqualObjects(theNewValue, @"2", @"Failed.");
-
-    self.testValue = @"3";
-    STAssertEqualObjects(theOldValue, @"2", @"Failed.");
-    STAssertEqualObjects(theNewValue, @"3", @"Failed.");
-
-    theOldValue = @"";
-    theNewValue = @"";
-    
-    [self removeKVOBlockForKeyPath:@"testValue" identifier:@"my_handler"];
-    
-    self.testValue = @"4";
-    STAssertEqualObjects(theOldValue, @"", @"Failed.");
-    STAssertEqualObjects(theNewValue, @"", @"Failed.");
-    }
-
 - (void)testTokens
     {
     __block NSString *theOldValue = @"";

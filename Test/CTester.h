@@ -31,8 +31,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CTester : NSObject {
-}
+@interface CTester : NSObject
 
 @property (readwrite, nonatomic, retain) NSString *testValue;
 

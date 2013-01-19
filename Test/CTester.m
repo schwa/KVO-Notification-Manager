@@ -47,26 +47,8 @@
 
 - (void)test
     {
-    [self testIdentifiers];
     [self testTokens];
     [self testOneShot];
-    }
-
-- (void)testIdentifiers
-    {
-    NSLog(@"##### IDENTIFIERS #####");
-
-    [self addKVOBlockForKeyPath:@"testValue" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld identifier:@"my_handler" handler:^(NSString *keyPath, id object, NSDictionary *change) {
-        NSLog(@"I see you changed value from \"%@\" to \"%@\"", [change objectForKey:NSKeyValueChangeOldKey], [change objectForKey:NSKeyValueChangeNewKey]);
-        }];
-
-    self.testValue = @"A horse";
-    self.testValue = @"is a horse";
-    self.testValue = @"of course";
-    self.testValue = @"of course.";
-    self.testValue = NULL;
-
-    [self removeKVOBlockForKeyPath:@"testValue" identifier:@"my_handler"];
     }
 
 - (void)testTokens

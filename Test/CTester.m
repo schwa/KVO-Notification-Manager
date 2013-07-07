@@ -31,7 +31,7 @@
 
 #import "CTester.h"
 
-#import "NSObject_KVOBlock.h"
+#import "NSObject+KVOBlock.h"
 
 @interface CTester ()
 @end

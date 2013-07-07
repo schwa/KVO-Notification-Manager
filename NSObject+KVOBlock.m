@@ -1,5 +1,5 @@
 //
-//  NSObject_KVOBlock.m
+//  NSObject+KVOBlock.m
 //  TouchCode
 //
 //  Created by Jonathan Wight on 07/24/11.
@@ -29,7 +29,7 @@
 //  authors and should not be interpreted as representing official policies, either expressed
 //  or implied, of toxicsoftware.com.
 
-#import "NSObject_KVOBlock.h"
+#import "NSObject+KVOBlock.h"
 
 #import <objc/runtime.h>
 

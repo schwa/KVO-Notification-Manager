@@ -7,20 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4530DC2A1402C7CE00FCBA6F /* NSObject_KVOBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 4530DC281402C7CE00FCBA6F /* NSObject_KVOBlock.m */; };
-		4530DC2B1402C7CE00FCBA6F /* NSObject_KVOBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 4530DC281402C7CE00FCBA6F /* NSObject_KVOBlock.m */; };
 		45393F5111DC125700A4C942 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B97325FDCFA39411CA2CEA /* Foundation.framework */; };
 		45393F5411DC126500A4C942 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		45393F5811DC127600A4C942 /* CTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 45393F5711DC127600A4C942 /* CTester.m */; };
 		45393FA011DC141800A4C942 /* UnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 45393F9E11DC141800A4C942 /* UnitTests.m */; };
+		45D061B41789EC6400A20118 /* NSObject+KVOBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 45D061B31789EC6400A20118 /* NSObject+KVOBlock.m */; };
+		45D061B51789EC9700A20118 /* NSObject+KVOBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 45D061B31789EC6400A20118 /* NSObject+KVOBlock.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		256AC3F00F4B6AF500CF3369 /* Test_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test_Prefix.pch; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		4530DC281402C7CE00FCBA6F /* NSObject_KVOBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSObject_KVOBlock.m; path = ../NSObject_KVOBlock.m; sourceTree = "<group>"; };
-		4530DC291402C7CE00FCBA6F /* NSObject_KVOBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSObject_KVOBlock.h; path = ../NSObject_KVOBlock.h; sourceTree = "<group>"; };
 		45393DE611DC122600A4C942 /* KVOTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = KVOTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		45393F5611DC127600A4C942 /* CTester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTester.h; sourceTree = "<group>"; };
 		45393F5711DC127600A4C942 /* CTester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTester.m; sourceTree = "<group>"; };
@@ -28,6 +26,8 @@
 		45393F9D11DC141800A4C942 /* UnitTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitTests.h; sourceTree = "<group>"; };
 		45393F9E11DC141800A4C942 /* UnitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitTests.m; sourceTree = "<group>"; };
 		4577CD6B106150E5006432BE /* Unit Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		45D061B21789EC6400A20118 /* NSObject+KVOBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+KVOBlock.h"; path = "../NSObject+KVOBlock.h"; sourceTree = "<group>"; };
+		45D061B31789EC6400A20118 /* NSObject+KVOBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+KVOBlock.m"; path = "../NSObject+KVOBlock.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,8 +61,8 @@
 		29B97314FDCFA39411CA2CEA /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				4530DC291402C7CE00FCBA6F /* NSObject_KVOBlock.h */,
-				4530DC281402C7CE00FCBA6F /* NSObject_KVOBlock.m */,
+				45D061B21789EC6400A20118 /* NSObject+KVOBlock.h */,
+				45D061B31789EC6400A20118 /* NSObject+KVOBlock.m */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				45393F9B11DC141800A4C942 /* Unit Tests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -195,7 +195,7 @@
 			files = (
 				45393F5411DC126500A4C942 /* main.m in Sources */,
 				45393F5811DC127600A4C942 /* CTester.m in Sources */,
-				4530DC2B1402C7CE00FCBA6F /* NSObject_KVOBlock.m in Sources */,
+				45D061B51789EC9700A20118 /* NSObject+KVOBlock.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,7 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45393FA011DC141800A4C942 /* UnitTests.m in Sources */,
-				4530DC2A1402C7CE00FCBA6F /* NSObject_KVOBlock.m in Sources */,
+				45D061B41789EC6400A20118 /* NSObject+KVOBlock.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

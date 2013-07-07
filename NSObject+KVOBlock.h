@@ -1,5 +1,5 @@
 //
-//  NSObject_KVOBlock.h
+//  NSObject+KVOBlock.h
 //  TouchCode
 //
 //  Created by Jonathan Wight on 07/24/11.

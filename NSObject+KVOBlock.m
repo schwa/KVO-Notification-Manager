@@ -141,31 +141,36 @@ static CKVOBlockHelper *KVOBlockHelperForObject(NSObject *object, BOOL inCreate)
 
 - (void)dealloc
     {
-    [_tokensByContext enumerateKeysAndObjectsUsingBlock:^(NSNumber *index, CKVOToken *token, BOOL *stop)
+    __strong NSObject *strong_observedObject = self.observedObject;
+
+    for (CKVOToken *theToken in [_tokensByContext allValues])
         {
-		void *theContext = token.context;
+		void *theContext = theToken.context;
         NSParameterAssert(theContext != NULL);
-        NSString *theKeypath = token.keypath;
+        NSString *theKeypath = theToken.keypath;
         NSParameterAssert(theKeypath != NULL);
-        [_observedObject removeObserver:self forKeyPath:theKeypath context:theContext];
-        }];
+        [strong_observedObject removeObserver:self forKeyPath:theKeypath context:theContext];
+        }
     }
 
 - (NSString *)debugDescription
     {
-    return([NSString stringWithFormat:@"%@ (%@, %@, %@)", [self description], self.observedObject, self.tokensByContext, [self.observedObject observationInfo]]);
+    __strong NSObject *strong_observedObject = self.observedObject;
+    NSString *theDescription = [NSString stringWithFormat:@"%@ (%@, %@, %@)", [self description], strong_observedObject, self.tokensByContext, [strong_observedObject observationInfo]];
+    return (theDescription);
     }
 
 - (void)dump
 	{
+    __strong NSObject *strong_observedObject = self.observedObject;
 	printf("*******************************************************\n");
 	printf("%s\n", [[self description] UTF8String]);
-	printf("\tObserved Object: %p\n", (__bridge void *)self.observedObject);
+	printf("\tObserved Object: %p\n", (__bridge void *)strong_observedObject);
 	printf("\tKeys:\n");
 	[_tokensByContext enumerateKeysAndObjectsUsingBlock:^(NSNumber *index, CKVOToken *token, BOOL *stop) {
 		printf("\t\t%s\n", [[index description] UTF8String]);
 		}];
-	printf("\tObservationInfo: %s\n", [[(__bridge id)[self.observedObject observationInfo] description] UTF8String]);
+	printf("\tObservationInfo: %s\n", [[(__bridge id)[strong_observedObject observationInfo] description] UTF8String]);
 	}
 
 - (void)removeHandlerForKey:(CKVOToken *)inToken

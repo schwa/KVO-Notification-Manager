@@ -67,7 +67,7 @@ static void *KVO;
     NSParameterAssert(inKeyPath);
     NSParameterAssert([NSThread isMainThread]); // TODO -- remove and grow a pair.
 
-    CKVOBlockHelper *theHelper = [self helper:YES];
+    CKVOBlockHelper *theHelper = KVOBlockHelperForObject(self, YES);
 	NSParameterAssert(theHelper != NULL);
 
     CKVOToken *theToken = [theHelper insertNewTokenForKeyPath:inKeyPath block:inHandler];
@@ -84,7 +84,7 @@ static void *KVO;
 - (void)removeKVOBlockForToken:(CKVOToken *)inToken
     {
     NSParameterAssert([NSThread isMainThread]); // TODO -- remove and grow a pair.
-    CKVOBlockHelper *theHelper = [self helper:NO];
+    CKVOBlockHelper *theHelper = KVOBlockHelperForObject(self, NO);
     NSParameterAssert(theHelper != NULL);
 	
     void *theContext = inToken.context;
@@ -110,22 +110,16 @@ static void *KVO;
     return(theToken);
     }
 
-- (void)KVODump
-	{
-    CKVOBlockHelper *theHelper = [self helper:NO];
-	[theHelper dump];
-	}
-
 #pragma mark -
 
-- (CKVOBlockHelper *)helper:(BOOL)inCreate
-	{
-    CKVOBlockHelper *theHelper = objc_getAssociatedObject(self, &KVO);
+static CKVOBlockHelper *KVOBlockHelperForObject(NSObject *object, BOOL inCreate)
+    {
+    CKVOBlockHelper *theHelper = objc_getAssociatedObject(object, &KVO);
     if (theHelper == NULL && inCreate == YES)
         {
-        theHelper = [[CKVOBlockHelper alloc] initWithObject:self];
+        theHelper = [[CKVOBlockHelper alloc] initWithObject:object];
 
-        objc_setAssociatedObject(self, &KVO, theHelper, OBJC_ASSOCIATION_RETAIN);
+        objc_setAssociatedObject(object, &KVO, theHelper, OBJC_ASSOCIATION_RETAIN);
         }
     return(theHelper);
 	}

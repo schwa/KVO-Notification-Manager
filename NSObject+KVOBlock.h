@@ -41,7 +41,5 @@ typedef void (^KVOFullBlock)(NSString *keyPath, id object, NSDictionary *change)
 /// One shot blocks remove themselves after they've been fired once.
 - (id)addOneShotKVOBlockForKeyPath:(NSString *)inKeyPath options:(NSKeyValueObservingOptions)inOptions handler:(KVOFullBlock)inHandler;
 
-- (void)KVODump;
-
 @end
 
